@@ -23,6 +23,23 @@ class TodoApp extends Component {
     }));
   };
 
+  updateTodo = (eachTodo) => {
+    this.setState({ titleInput: eachTodo.titleInput });
+  };
+
+  onClickTodoEdit = (id) => {
+    this.setState((prevState) => ({
+      todosList: prevState.todosList.filter((eachTodo) => {
+        if (id === eachTodo.id) {
+          this.updateTodo(eachTodo);
+          return null;
+        } else {
+          return eachTodo;
+        }
+      }),
+    }));
+  };
+
   onChangeTitleInput = (event) => {
     this.setState({ titleInput: event.target.value });
   };

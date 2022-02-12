@@ -21,11 +21,11 @@ const TodoItem = (props) => {
       <div className="header-container">
         <p className="title">{title}</p>
         <div>
-          <button type="button" className="star-button" onClick={onClickDelete}>
-            <img src={deleteImgUrl} className="star" alt="star" />
-          </button>
           <button type="button" className="star-button" onClick={onClickEdit}>
             <img src={editImgUrl} className="star" alt="star" />
+          </button>
+          <button type="button" className="star-button" onClick={onClickDelete}>
+            <img src={deleteImgUrl} className="star" alt="star" />
           </button>
         </div>
       </div>
