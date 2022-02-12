@@ -9,26 +9,18 @@ class TodoApp extends Component {
   state = {
     todosList: [],
     titleInput: "",
-    isFilterActive: false,
   };
 
   onClickTodoDeleted = (id) => {
     this.setState((prevState) => ({
-      todosList: prevState.todosList.map((eachTodo) => {
+      todosList: prevState.todosList.filter((eachTodo) => {
         if (id === eachTodo.id) {
-          return { ...eachTodo, isStarred: !eachTodo.isStarred };
+          return null;
+        } else {
+          return eachTodo;
         }
-        return eachTodo;
       }),
     }));
-  };
-
-  onFilter = () => {
-    const { isFilterActive } = this.state;
-
-    this.setState({
-      isFilterActive: !isFilterActive,
-    });
   };
 
   onChangeTitleInput = (event) => {
@@ -41,7 +33,6 @@ class TodoApp extends Component {
     const newTodo = {
       id: v4(),
       title: titleInput,
-      isStarred: false,
     };
 
     this.setState((prevState) => ({
@@ -50,21 +41,8 @@ class TodoApp extends Component {
     }));
   };
 
-  getFilteredTodosList = () => {
-    const { todosList, isFilterActive } = this.state;
-
-    if (isFilterActive) {
-      return todosList.filter(
-        (eachTransaction) => eachTransaction.isStarred === true
-      );
-    }
-    return todosList;
-  };
-
   render() {
-    const { titleInput, isFilterActive } = this.state;
-    const filterClassName = isFilterActive ? "filter-filled" : "filter-empty";
-    const filteredTodosList = this.getFilteredTodosList();
+    const { titleInput, todosList } = this.state;
 
     return (
       <div className="app-container">
@@ -91,26 +69,20 @@ class TodoApp extends Component {
               <img
                 src="https://assets.ccbp.in/frontend/react-js/appointments-app/appointments-img.png"
                 alt="todo"
-                className="todo-img"
+                className="todos-img"
               />
             </div>
             <hr className="hr" />
             <div className="header-with-filter-container">
               <h1 className="todos-heading">Todos</h1>
-              <button
-                type="button"
-                className={`filter-style ${filterClassName}`}
-                onClick={this.onFilter}
-              >
-                Starred
-              </button>
             </div>
             <ul className="todos-list">
-              {filteredTodosList.map((eachTodo) => (
+              {todosList.map((eachTodo) => (
                 <TodoItem
                   key={eachTodo.id}
                   todoDetails={eachTodo}
                   onClickTodoDeleted={this.onClickTodoDeleted}
+                  onClickTodoEdit={this.onClickTodoEdit}
                 />
               ))}
             </ul>
