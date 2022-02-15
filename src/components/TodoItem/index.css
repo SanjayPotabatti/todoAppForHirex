@@ -23,8 +23,15 @@
   margin-bottom: 10px;
 }
 
-.title {
+.title-light {
   color: #171f46;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0px;
+}
+.title-dark {
+  color: #ffffff;
   font-family: "Roboto";
   font-size: 16px;
   font-weight: 500;

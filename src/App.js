@@ -1,4 +1,3 @@
-import TodoApp from "./components/TodoApp";
 import TodoList from "./components/TodoList";
 import "./App.css";
 import store from "./redux/store";

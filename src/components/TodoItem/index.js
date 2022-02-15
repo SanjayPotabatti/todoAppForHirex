@@ -8,7 +8,7 @@ const TodoItem = (props) => {
   const dispatch = useDispatch();
   const titleRef = useRef(null);
   const [update, setUpdateForm] = useState(null);
-  const { todoDetails, onClickTodoEdit } = props;
+  const { todoDetails, theme } = props;
   const { id, title } = todoDetails;
 
   const updatetodo = (e) => {
@@ -37,6 +37,8 @@ const TodoItem = (props) => {
     dispatch(deleteTodo(id));
   };
 
+  const titleHeading = theme ? "title-light" : "title-dark";
+
   return (
     <>
       {update ? (
@@ -44,7 +46,7 @@ const TodoItem = (props) => {
       ) : (
         <li className="todo-item">
           <div className="header-container">
-            <p className="title">{title}</p>
+            <p className={`${titleHeading}`}>{title}</p>
             <div>
               <button
                 type="button"
